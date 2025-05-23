@@ -1,9 +1,11 @@
 from palmerpenguins import load_penguins
+import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.neighbors import KNeighborsClassifier
-import pandas as pd
-import seaborn as sns
+from sklearn.metrics import classification_report
+
+
 
 penguins = load_penguins()
 penguins = penguins.dropna()
@@ -31,6 +33,4 @@ knn = KNeighborsClassifier()
 knn.fit(x_train, y_train)
 pred = knn.predict(x_val)
 
-print(pred)
-
-print(y_val.values)
+print(classification_report(y_val, pred, target_names=['Others', 'Adelie']))
